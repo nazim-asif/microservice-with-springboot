@@ -1,5 +1,5 @@
 server:
-  port : 8080
+  port : 8089
 
 eureka:
   instance:
@@ -13,3 +13,7 @@ eureka:
 spring:
   application:
     name: CUSTOMER-INFO-SERVICE
+  config:
+    import: configserver:http://localhost:8085
+#  profiles:
+#    active: dev
