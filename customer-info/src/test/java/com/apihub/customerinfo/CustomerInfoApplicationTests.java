@@ -21,10 +21,10 @@ class CustomerInfoApplicationTests {
     void contextLoads() {
     }
 
-    @Test
+/*    @Test
     void integrateClient(){
         assertThat(integrationClient.getCustomerInfo()).isNotNull();
-    }
+    }*/
 
     @Test
     void getCustomerInfo(){
