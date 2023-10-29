@@ -13,4 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface IntegrationClient {
     @RequestMapping(value = "/api/v1/integration/customer/info", method = RequestMethod.GET)
     ResponseEntity<String> getCustomerInfo();
+
+    @RequestMapping(value = "/api/v1/integration/customer/address", method = RequestMethod.GET)
+    ResponseEntity<String> getCustomerAddress();
 }

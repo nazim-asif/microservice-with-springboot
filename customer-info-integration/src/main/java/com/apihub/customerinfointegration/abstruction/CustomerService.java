@@ -6,4 +6,5 @@ package com.apihub.customerinfointegration.abstruction;
  */
 public interface CustomerService {
     String getInfo();
+    String getAddress();
 }

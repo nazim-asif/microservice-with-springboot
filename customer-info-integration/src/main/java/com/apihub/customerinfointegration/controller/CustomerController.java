@@ -16,9 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping(ApiUtils.BASE_URL + "/customer")
 public class CustomerController {
+
     private final CustomerService customerService;
+
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public ResponseEntity<String> getCustomerInfo(){
         return ResponseEntity.ok(customerService.getInfo());
+    }
+
+    @RequestMapping(value = "/address", method = RequestMethod.GET)
+    public ResponseEntity<String> getCustomerDetails(){
+        return ResponseEntity.ok(customerService.getAddress());
     }
 }

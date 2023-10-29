@@ -15,14 +15,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ApiUtils.BASE_CLIENT_URL)
 @RequiredArgsConstructor
-public class IntegrationController {
+public class IntegrationController extends BaseController{
     private final IntegrationClient integrationClient;
 
-    @RequestMapping(value = "/customer/info", method = RequestMethod.GET)
+    @RequestMapping(value = "/customer/info1", method = RequestMethod.GET)
+//    @CircuitBreaker(name = "customer-info1", fallbackMethod = "fallbackForCustomerInfo")
     ResponseEntity<String> getCustomerInfo(){
         ResponseEntity<String> response;
         try {
             response = integrationClient.getCustomerInfo();
+        }catch (Exception ex){
+            throw new RuntimeException(ex.getMessage());
+        }
+
+        return response;
+    }
+
+
+    @RequestMapping(value = "/customer/address1", method = RequestMethod.GET)
+    ResponseEntity<String> getCustomerAddress(){
+        ResponseEntity<String> response;
+        try {
+            response = integrationClient.getCustomerAddress();
         }catch (Exception ex){
             throw new RuntimeException(ex.getMessage());
         }

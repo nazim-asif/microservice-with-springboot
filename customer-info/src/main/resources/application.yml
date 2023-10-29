@@ -17,3 +17,59 @@ spring:
     import: configserver:http://localhost:8085
 #  profiles:
 #    active: dev
+
+#management:
+#  health:
+#    circuitbreakers:
+#      enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health
+#
+#  endpoint:
+#    health:
+#      show-details: always
+
+
+#resilience4j:
+#  circuitbreaker:
+#    instances:
+#      default:
+#        registerHealthIndicator: true
+#        event-consumer-buffer-size: 2
+#        failureRateThreshold: 50
+#        minimumNumberOfCalls: 5
+#        automaticTransitionFromOpenToHalfOpenEnabled: true
+#        waitDurationInOpenState: 6s
+#        permittedNumberOfCallsInHalfOpenState: 3
+#        slidingWindowSize: 4
+#        slidingWindowType: COUNT_BASED
+
+logging:
+  level:
+    io.github.resilience4j: DEBUG
+    org.springframework.boot.actuate.health: DEBUG
+
+#management:
+#  endpoint:
+#    health:
+#      show-details: always
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health
+#
+management.health.circuitbreakers.enabled: true
+management.health.ratelimiters.enabled: true
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+
+
+resilience4j.ratelimiter:
+  configs:
+    instances:
+      registerHealthIndicator: true
