@@ -11,17 +11,32 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 spring:
+  redis:
+    host: localhost
+    port: 6379
   application:
     name: API-GATEWAY
-  cloud:
-    gateway:
-      routes:
-        - id : CUSTOMER-INFO-SERVICE
-          uri: lb://CUSTOMER-INFO-SERVICE
-          predicates:
-            - Path= /api/v1/customer/**,/api/v1/client/**
-
-        - id: CUSTOMER-INFO-INTEGRATION-SERVICE
-          uri: lb://CUSTOMER-INFO-INTEGRATION-SERVICE
-          predicates:
-            - Path= /api/v1/integration/**
+#  cloud:
+#    gateway:
+#      routes:
+#        - id : CUSTOMER-INFO-SERVICE
+#          uri: lb://CUSTOMER-INFO-SERVICE
+#          predicates:
+#            - Path= /api/v1/customer/**,/api/v1/client/**
+#          filters:
+#            - name: RequestRateLimiter
+#              args:
+#                redis-rate-limiter.replenishRate: 20
+#                redis-rate-limiter.burstCapacity: 40
+#                redis-rate-limiter.requestedTokens: 1
+#
+#        - id: CUSTOMER-INFO-INTEGRATION-SERVICE
+#          uri: lb://CUSTOMER-INFO-INTEGRATION-SERVICE
+#          predicates:
+#            - Path= /api/v1/integration/**
+#          filters:
+#            - name: RequestRateLimiter
+#              args:
+#                redis-rate-limiter.replenishRate: 4
+#                redis-rate-limiter.burstCapacity: 8
+#                redis-rate-limiter.requestedTokens: 1
